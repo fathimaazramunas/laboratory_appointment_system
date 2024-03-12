@@ -1,0 +1,54 @@
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+<head>
+    <title>Patients</title>
+</head>
+<body class="d-flex flex-column h-100">
+<main layout:fragment="body" class="flex-shrink-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+            </div>
+            <div class="col-md-2 text-right">
+                <button type="button" class="btn btn-primary mt-3" onclick="window.location.href = 'patients/new'">Add
+                    New Patient
+                </button>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <form th:action="@{/patients/search}" class="form-inline my-2 my-lg-0 mb-3">
+                <input name="query" class="form-control mr-sm-2 mb-5" type="search" placeholder="Search using first name"
+                       aria-label="Search">
+            </form>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Detail</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="patient : ${patients}">
+                <td th:text="${patient.user_id}"></td>
+                <td th:text="${patient.first_name}"></td>
+                <td th:text="${patient.last_name}"></td>
+                <td><a class="btn btn-primary" th:href="@{/patients/{user_id}(user_id=${patient.user_id})}">Details</a>
+                </td>
+                <td><a class="btn btn-primary" th:href="@{/patients/{user_id}/edit(user_id=${patient.user_id})}">Edit</a>
+                </td>
+                <td><a class="btn btn-danger" th:href="@{/patients/{user_id}/delete(user_id=${patient.user_id})}">Delete
+                    Patient</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

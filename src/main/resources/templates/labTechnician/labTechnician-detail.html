@@ -1,0 +1,48 @@
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>LabTechnician Details</title>
+</head>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
+    <section layout:fragment="body">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <a th:href="@{/labTechnicians}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="white" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                                    <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                                </svg>
+                            </a>
+                            LabTechnician Profile
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>LabTechnician ID:</strong> <span th:text="${labTechnician.user_id}"></span></p>
+                                    <p><strong>First Name:</strong> <span th:text="${labTechnician.first_name}"></span></p>
+                                    <p><strong>Last Name:</strong> <span th:text="${labTechnician.last_name}"></span></p>
+                                    <p><strong>Department:</strong> <span th:text="${labTechnician.department}"></span></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Date of Birth:</strong> <span th:text="${labTechnician.date_of_birth}"></span></p>
+                                    <p><strong>Email:</strong> <span th:text="${labTechnician.email}"></span></p>
+                                    <p><strong>Address:</strong>  <span th:text="${labTechnician.address}"></span></p>
+                                    <p><strong>Job Title:</strong>  <span th:text="${labTechnician.job_title}"></span></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <a class="btn btn-danger" th:href="@{/labTechnicians/{user_id}/delete(user_id=${labTechnician.user_id})}">Delete LabTechnician</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

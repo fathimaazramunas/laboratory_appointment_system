@@ -1,0 +1,60 @@
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+<head>
+    <title>Appointments</title>
+</head>
+<body class="d-flex flex-column h-100">
+<main layout:fragment="body" class="flex-shrink-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+            </div>
+            <div class="col-md-2 text-right">
+                <button type="button" class="btn btn-primary mt-3" onclick="window.location.href = 'appointments/new'">
+                    Schedule New
+                </button>
+            </div>
+        </div>
+        <!--        <div class="row mt-3">
+                    <form th:action="@{/appointments/search}" class="form-inline my-2 my-lg-0 mb-3">
+                        <input name="query" class="form-control mr-sm-2 mb-5" type="search" placeholder="Search using first name"
+                               aria-label="Search">
+                    </form>
+                </div>-->
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">Patient Name</th>
+                <th scope="col">Doctor Name</th>
+                <th scope="col">Time</th>
+                <th scope="col">Test Type</th>
+                <th scope="col">Status</th>
+                <th scope="col">Details</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="appointment : ${appointments}">
+                <td th:text="${appointment.id}"></td>
+                <td th:text="${appointment.p_first_name}"></td>
+                <td th:text="${appointment.d_first_name}"></td>
+                <td th:text="${appointment.date_time}"></td>
+                <td th:text="${appointment.test_type}"></td>
+                <td th:text="${appointment.status}"></td>
+                <td><a class="btn btn-primary" th:href="@{/appointments/{id}(id=${appointment.id})}">Details</a>
+                </td>
+                <td><a class="btn btn-primary" th:href="@{/appointments/{id}/edit(id=${appointment.id})}">Reschedule</a>
+                </td>
+                <td><a class="btn btn-danger" th:href="@{/appointments/{id}/delete(id=${appointment.id})}">Cancel
+                </a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Add Appointment</title>
+</head>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
+    <section layout:fragment="body" class="py-5">
+        <div class="container">
+            <form role="form" method="post" th:action="@{/appointment/{id}/edit(id=${appointment.id})}" th:object="${appointment}">
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="date_time">Time & Date</label>
+                            <input type="datetime-local" class="form-control" id="date_time" name="date_time"
+                                   th:field="*{date_time}" placeholder="Date & Time">
+                            <p th:if="${#fields.hasErrors('date_time')}" class="text-danger"
+                               th:errors="*{date_time}"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="test_type">Test Type</label>
+                            <input type="text" class="form-control" id="test_type" name="test_type"
+                                   th:field="*{test_type}"
+                                   placeholder="Test Type">
+                            <p th:if="${#fields.hasErrors('test_type')}" class="text-danger"
+                               th:errors="*{test_type}"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="patient">Patient</label>
+                            <select class="form-control btn btn-outline-dark dropdown-toggle" id="patient" name="patient" th:field="*{patient}">
+                                <option th:each="patient : ${patients}"
+                                        th:value="${patient.user_id}"
+                                        th:text="${patient.first_name + ' ' + patient.last_name}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="dropdown">
+                                <label for="doctor">Doctor</label>
+                                <select class="form-control btn btn-outline-dark dropdown-toggle" id="doctor" name="doctor" th:field="*{doctor}">
+                                    <option th:each="doctor : ${doctors}"
+                                            th:value="${doctor.user_id}"
+                                            th:text="${doctor.user_id + '. '+ doctor.first_name + ' ' + doctor.last_name}"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control" id="description" name="description"
+                                   th:field="*{description}" placeholder="Description">
+                            <p th:if="${#fields.hasErrors('description')}" class="text-danger"
+                               th:errors="*{description}"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mx-0 my-0 mt-3 row ">
+                    <button type="submit" class="btn btn-primary">Reschedule</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+</body>
+</html>

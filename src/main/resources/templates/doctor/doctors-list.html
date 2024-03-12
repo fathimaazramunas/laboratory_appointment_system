@@ -1,0 +1,54 @@
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+<head>
+    <title>Doctors</title>
+</head>
+<body class="d-flex flex-column h-100">
+<main layout:fragment="body" class="flex-shrink-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+            </div>
+            <div class="col-md-2 text-right">
+                <button type="button" class="btn btn-primary mt-3" onclick="window.location.href = 'doctors/new'">Add
+                    New Doctor
+                </button>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <form th:action="@{/doctors/search}" class="form-inline my-2 my-lg-0 mb-3">
+                <input name="query" class="form-control mr-sm-2 mb-5" type="search" placeholder="Search using first name"
+                       aria-label="Search">
+            </form>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Detail</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="doctor : ${doctors}">
+                <td th:text="${doctor.user_id}"></td>
+                <td th:text="${doctor.first_name}"></td>
+                <td th:text="${doctor.last_name}"></td>
+                <td><a class="btn btn-primary" th:href="@{/doctors/{user_id}(user_id=${doctor.user_id})}">Details</a>
+                </td>
+                <td><a class="btn btn-primary" th:href="@{/doctors/{user_id}/edit(user_id=${doctor.user_id})}">Edit</a>
+                </td>
+                <td><a class="btn btn-danger" th:href="@{/doctors/{user_id}/delete(user_id=${doctor.user_id})}">Delete
+                    Doctor</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Appoitment Details</title>
+</head>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
+    <section layout:fragment="body">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <a th:href="@{/appointments}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="white" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                                    <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                                </svg>
+                            </a>
+                            Appointment Details
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Appointment ID:</strong> <span th:text="${appointment.id}"></span></p>
+                                    <p><strong>Status :</strong> <span th:text="${appointment.status}"></span></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Test Type:</strong> <span th:text="${appointment.test_type}"></span></p>
+                                    <p><strong>Date & Time:</strong> <span th:text="${appointment.date_time}"></span></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p><strong>Description:</strong> <span th:text="${appointment.description}"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-3">
+                        <div class="card-header bg-primary text-white">
+                            Patient Profile
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Patient ID:</strong> <span th:text="${patient.user_id}"></span></p>
+                                    <p><strong>First Name:</strong> <span th:text="${patient.first_name}"></span></p>
+                                    <p><strong>Last Name:</strong> <span th:text="${patient.last_name}"></span></p>
+                                    <p><strong>Insurance Provider:</strong> <span th:text="${patient.insurance_provider}"></span></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Date of Birth:</strong> <span th:text="${patient.date_of_birth}"></span></p>
+                                    <p><strong>Email:</strong> <span th:text="${patient.email}"></span></p>
+                                    <p><strong>Address:</strong>  <span th:text="${patient.address}"></span></p>
+                                    <p><strong>Blood Type:</strong> <span th:text="${patient.blood_type}"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-3">
+                        <div class="card-header bg-primary text-white">
+                            Doctor Profile
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Doctor ID:</strong> <span th:text="${doctor.user_id}"></span></p>
+                                    <p><strong>First Name:</strong> <span th:text="${doctor.first_name}"></span></p>
+                                    <p><strong>Last Name:</strong> <span th:text="${doctor.last_name}"></span></p>
+                                    <p><strong>Department:</strong> <span th:text="${doctor.department}"></span></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Date of Birth:</strong> <span th:text="${doctor.date_of_birth}"></span></p>
+                                    <p><strong>Email:</strong> <span th:text="${doctor.email}"></span></p>
+                                    <p><strong>Address:</strong>  <span th:text="${doctor.address}"></span></p>
+                                    <p><strong>Specialize:</strong>  <span th:text="${doctor.specialize}"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="d-grid col-md-6">
+                            <a class="btn btn-danger" th:href="@{/appointments/{id}/delete(id=${appointment.id})}">Cancel Appointment</a>
+                        </div>
+                        <div class="d-grid col-md-6">
+                            <a class="btn btn-warning" th:href="@{/appointments/{id}/edit(id=${appointment.id})}">Reschedule Appointment</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

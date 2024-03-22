@@ -11,6 +11,8 @@ import java.util.Optional;
 public interface AppointmentService {
     List<AppointmentListViewDto> getAllAppointments();
 
+    void deleteByDoctorId(int doctorId);
+
     Appointment createAppointment(Appointment appointment);
 
     Appointment getAppointmentById(int doctorId);
@@ -22,4 +24,6 @@ public interface AppointmentService {
     void delete(int id);
 
     void updateAppointment(Appointment appointment);
+
+    void deleteByPatientId(int patientId);
 }

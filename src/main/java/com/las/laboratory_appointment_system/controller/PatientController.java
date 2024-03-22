@@ -2,6 +2,7 @@ package com.las.laboratory_appointment_system.controller;
 
 import com.las.laboratory_appointment_system.dto.PatientDto;
 import com.las.laboratory_appointment_system.model.Patient;
+import com.las.laboratory_appointment_system.service.AppointmentService;
 import com.las.laboratory_appointment_system.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,10 +14,12 @@ import java.util.List;
 @Controller
 public class PatientController {
     private final PatientService patientService;
+    private final AppointmentService appointmentService;
 
     @Autowired
-    public PatientController(PatientService patientService) {
+    public PatientController(PatientService patientService, AppointmentService appointmentService) {
         this.patientService = patientService;
+        this.appointmentService = appointmentService;
     }
 
 
@@ -71,6 +74,7 @@ public class PatientController {
 
     @GetMapping("/patients/{user_id}/delete")
     public String deleteClub(@PathVariable("user_id") int patientId) {
+        appointmentService.deleteByPatientId(patientId);
         patientService.delete(patientId);
         return "redirect:/patients";
     }

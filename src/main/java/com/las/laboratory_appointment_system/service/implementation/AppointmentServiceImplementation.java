@@ -1,7 +1,6 @@
 package com.las.laboratory_appointment_system.service.implementation;
 
 import com.las.laboratory_appointment_system.dto.AppointmentListViewDto;
-import com.las.laboratory_appointment_system.mapper.AppointmentMapper;
 import com.las.laboratory_appointment_system.model.Appointment;
 import com.las.laboratory_appointment_system.repository.AppointmentRepository;
 import com.las.laboratory_appointment_system.service.AppointmentService;
@@ -49,6 +48,16 @@ public class AppointmentServiceImplementation implements AppointmentService {
     @Override
     public void updateAppointment(Appointment appointment) {
         appointmentRepository.save(appointment);
+    }
+
+    @Override
+    public void deleteByPatientId(int patientId) {
+        appointmentRepository.deleteAppointmentByPatientId(patientId);
+    }
+
+    @Override
+    public void deleteByDoctorId(int doctorId) {
+        appointmentRepository.deleteAppointmentByDoctorId(doctorId);
     }
 
     public Appointment createAppointment(Appointment appointment) {

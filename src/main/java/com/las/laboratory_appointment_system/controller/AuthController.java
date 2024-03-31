@@ -20,7 +20,7 @@ public class AuthController {
         System.out.println(password);
         if(Objects.equals(username, "abc") && Objects.equals(password, "123")){
             return "redirect:/patients";        }
-        return "redirect:doctors";
+        return "redirect:login";
     }
 
 /*    @GetMapping("/register")
